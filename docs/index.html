@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grow Services | IT, Networking & CCTV Solutions</title>
+    <meta name="description" content="Grow Services offers PC sales and repair, CCTV installation, and small office networking solutions in Ranchi.">
+    <style>
+        :root {
+            --primary: #0f9d7a;
+            --primary-dark: #0b7d5c;
+            --secondary: #1d9bf0;
+            --accent: #ffb703;
+            --dark: #0f172a;
+            --dark-soft: #1e293b;
+            --light: #f8fafc;
+            --muted: #64748b;
+            --card: rgba(255,255,255,0.88);
+            --shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 2rem));
+            margin: 0 auto;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(14px);
+            background: rgba(15, 23, 42, 0.82);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+        }
+
+        .nav-wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 72px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+        }
+
+        .logo img {
+            width: 68px;
+            height: 58px;
+            object-fit: contain;
+            border-radius: 10px;
+            background: #fff;
+            padding: 3px;
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(255,255,255,0.24);
+            border-radius: 12px;
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            font-size: 1.35rem;
+            cursor: pointer;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: rgba(255,255,255,0.85);
+            font-weight: 600;
+            transition: color 0.25s ease;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        .cta-btn,
+        .primary-btn,
+        .secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.9rem 1.6rem;
+            border-radius: 999px;
+            font-weight: 700;
+            transition: transform 0.22s ease, box-shadow 0.22s ease, background 0.22s ease;
+        }
+
+        .primary-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            box-shadow: 0 12px 28px rgba(13, 110, 253, 0.25);
+        }
+
+        .secondary-btn {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.26);
+            color: #fff;
+        }
+
+        .primary-btn:hover,
+        .secondary-btn:hover,
+        .cta-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            min-height: 88vh;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(120deg, rgba(15,23,42,0.88), rgba(15,23,42,0.62)),
+                url('https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: #fff;
+            padding-top: 96px;
+        }
+
+        .hero-inner {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 2rem;
+            align-items: center;
+            width: min(1180px, calc(100% - 2rem));
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 999px;
+            padding: 0.6rem 1rem;
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 1.3rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.4rem);
+            line-height: 1.08;
+            letter-spacing: -0.04em;
+            max-width: 700px;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.12rem;
+            color: rgba(255,255,255,0.82);
+            max-width: 640px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .trust-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            color: rgba(255,255,255,0.82);
+            font-size: 0.96rem;
+        }
+
+        .trust-row span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .trust-check {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: inline-block;
+            box-shadow: 0 0 0 6px rgba(0,180,216,0.18);
+        }
+
+        .hero-panel {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 24px;
+            padding: 1.5rem;
+            backdrop-filter: blur(8px);
+            box-shadow: var(--shadow);
+        }
+
+        .mini-card {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 18px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .mini-card h3 {
+            font-size: 0.9rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 0.8rem;
+        }
+
+        .mini-card strong {
+            font-size: 2rem;
+            display: block;
+            color: #fff;
+        }
+
+        .mini-card span {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.95rem;
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        .section-head {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-head p {
+            color: var(--muted);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-head h2 {
+            font-size: clamp(2rem, 3vw, 3rem);
+            letter-spacing: -0.04em;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-head h2 + p {
+            max-width: 670px;
+            margin: 0 auto;
+            text-transform: none;
+            letter-spacing: 0;
+            font-size: 1.05rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #fff;
+            border: 1px solid rgba(148,163,184,0.14);
+            border-radius: 22px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.06);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 32px rgba(15, 23, 42, 0.12);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            display: grid;
+            place-items: center;
+            border-radius: 18px;
+            background: linear-gradient(135deg, rgba(13,110,253,0.12), rgba(0,180,216,0.12));
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .service-card p {
+            color: var(--muted);
+        }
+
+        .stats-bar {
+            background: linear-gradient(135deg, var(--dark), var(--dark-soft));
+            color: #fff;
+            border-radius: 28px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 1rem 0.5rem;
+        }
+
+        .stat-box strong {
+            display: block;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-box span {
+            color: rgba(255,255,255,0.72);
+        }
+
+        .features-wrap {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 1.1rem;
+        }
+
+        .feature-item {
+            background: #fff;
+            border: 1px solid rgba(148,163,184,0.14);
+            border-radius: 20px;
+            padding: 1.2rem 1.4rem;
+            display: flex;
+            gap: 1rem;
+            align-items: start;
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.04);
+        }
+
+        .feature-bullet {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, rgba(13,110,253,0.12), rgba(0,180,216,0.12));
+            color: var(--primary);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .feature-item h3 {
+            margin-bottom: 0.25rem;
+            font-size: 1.12rem;
+        }
+
+        .feature-item p {
+            color: var(--muted);
+        }
+
+        .feature-visual {
+            background: linear-gradient(135deg, rgba(13,110,253,0.10), rgba(0,180,216,0.18));
+            border-radius: 28px;
+            padding: 1.5rem;
+            border: 1px solid rgba(148,163,184,0.15);
+        }
+
+        .feature-visual img {
+            width: 100%;
+            border-radius: 22px;
+            min-height: 400px;
+            object-fit: cover;
+        }
+
+        .contact-section {
+            background: linear-gradient(180deg, rgba(241,245,249,0.8), rgba(255,255,255,0.95));
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+        }
+
+        .contact-wrap {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 2rem;
+        }
+
+        .contact-meta {
+            background: #fff;
+            border: 1px solid rgba(148,163,184,0.14);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 12px 24px rgba(15,23,42,0.04);
+        }
+
+        .contact-meta h3 {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-meta p {
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 0.9rem;
+            align-items: start;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid rgba(148,163,184,0.16);
+        }
+
+        .contact-item:last-child {
+            border-bottom: 0;
+        }
+
+        .contact-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, rgba(13,110,253,0.12), rgba(0,180,216,0.12));
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: 0.1rem;
+        }
+
+        .contact-item span {
+            color: var(--muted);
+        }
+
+        .contact-form-box {
+            background: #fff;
+            border: 1px solid rgba(148,163,184,0.14);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 12px 24px rgba(15,23,42,0.04);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            border: 1px solid #dbe3ee;
+            border-radius: 14px;
+            padding: 0.9rem 1rem;
+            background: #f8fafc;
+            font: inherit;
+            color: var(--dark);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: 2px solid rgba(13,110,253,0.15);
+            border-color: rgba(13,110,253,0.38);
+            background: #fff;
+        }
+
+        .cta-btn {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            margin-top: 0.3rem;
+        }
+
+        footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.8);
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            right: 1.2rem;
+            bottom: 1.2rem;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            display: grid;
+            place-items: center;
+            color: #fff;
+            font-size: 1.8rem;
+            box-shadow: 0 18px 35px rgba(37, 211, 102, 0.35);
+            z-index: 1000;
+        }
+
+        .map-wrap {
+            min-height: 300px;
+            overflow: hidden;
+            border: 1px solid rgba(148,163,184,0.2);
+            border-radius: 24px;
+            background: #e2e8f0;
+            box-shadow: 0 12px 24px rgba(15,23,42,0.06);
+        }
+
+        .map-wrap iframe {
+            display: block;
+            width: 100%;
+            min-height: 300px;
+            border: 0;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+            .reveal { opacity: 1; transform: none; }
+        }
+
+        @media (max-width: 980px) {
+            .hero-inner,
+            .features-wrap,
+            .contact-wrap,
+            .services-grid,
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero-inner,
+            .features-wrap,
+            .contact-wrap {
+                display: grid;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .nav-wrap { position: relative; }
+
+            .menu-toggle {
+                display: inline-grid;
+                place-items: center;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: calc(100% + 0.5rem);
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                padding: 0.5rem;
+                border: 1px solid rgba(255,255,255,0.14);
+                border-radius: 16px;
+                background: rgba(15,23,42,0.97);
+                box-shadow: var(--shadow);
+            }
+
+            nav.is-open { display: flex; }
+
+            nav a {
+                padding: 0.85rem 1rem;
+                border-radius: 10px;
+            }
+
+            nav a:hover { background: rgba(255,255,255,0.08); }
+
+            .hero {
+                min-height: 78vh;
+            }
+
+            .hero-inner,
+            .services-grid,
+            .stats-grid,
+            .features-wrap,
+            .contact-wrap,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-actions .primary-btn,
+            .hero-actions .secondary-btn {
+                width: 100%;
+            }
+
+            .section-head h2 {
+                line-height: 1.2;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container nav-wrap">
+            <a class="logo" href="#home" aria-label="Grow Services home">
+                <img src="grow-logo.png" alt="Grow logo">
+            </a>
+            <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation">☰</button>
+            <nav id="site-navigation">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#about">Why Us</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-inner">
+            <div>
+                <div class="hero-badge">Trusted IT support in Ranchi</div>
+                <h1>Smarter tech solutions for every workspace.</h1>
+                <p>Reliable PC sales and repair, smart CCTV surveillance, and secure small office networking designed to keep your business connected, protected, and productive.</p>
+                <div class="hero-actions">
+                    <a href="#contact" class="primary-btn">Get a free quote</a>
+                    <a href="tel:+919973066876" class="secondary-btn">Call now</a>
+                </div>
+                <div class="trust-row">
+                    <span><i class="trust-check"></i> Sales, setup & repair</span>
+                    <span><i class="trust-check"></i> For homes & offices</span>
+                    <span><i class="trust-check"></i> Serving Ranchi</span>
+                </div>
+            </div>
+
+            <div class="hero-panel">
+                <div class="mini-card">
+                    <h3>IT support</h3>
+                    <strong>PC care</strong>
+                    <span>Sales, maintenance, and repairs</span>
+                </div>
+                <div class="mini-card">
+                    <h3>Security</h3>
+                    <strong>CCTV</strong>
+                    <span>Camera installation for your premises</span>
+                </div>
+                <div class="mini-card">
+                    <h3>Connectivity</h3>
+                    <strong>Networks</strong>
+                    <span>Wired and wireless office solutions</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <div class="section-head">
+                <p>Our services</p>
+                <h2>Technology solutions built for real business needs</h2>
+                <p>From custom computers and repairs to surveillance and office networking, we deliver dependable support that helps your systems run at their best.</p>
+            </div>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>New & Old PC Sales</h3>
+                    <p>Custom-built desktops, refurbished workstations, and performance-focused machines designed around your workload and budget.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🛠️</div>
+                    <h3>Hardware & Software Service</h3>
+                    <p>Fast diagnostics, repair, OS installation, optimization, and troubleshooting to keep your devices reliable and secure.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">📹</div>
+                    <h3>CCTV Installation</h3>
+                    <p>High-definition surveillance systems with remote access, night vision, and complete setup for homes, shops, and offices.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Small Office Networking</h3>
+                    <p>Smart wired and wireless network planning, secure router setup, and performance tuning for smoother day-to-day operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="stats-bar">
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <strong>PC</strong>
+                        <span>Sales & repairs</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>IT</strong>
+                        <span>Hardware & software support</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>CCTV</strong>
+                        <span>Camera installation</span>
+                    </div>
+                    <div class="stat-box">
+                        <strong>LAN</strong>
+                        <span>Office networking</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-head">
+                <p>Why choose us</p>
+                <h2>Practical support. Dependable service. Real results.</h2>
+            </div>
+
+            <div class="features-wrap">
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-bullet">✓</div>
+                        <div>
+                            <h3>Personalized recommendations</h3>
+                            <p>We match your technology to your specific workflow, goals, and budget instead of offering one-size-fits-all solutions.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-bullet">✓</div>
+                        <div>
+                            <h3>Professional installation</h3>
+                            <p>Our structured setup process ensures clean cable management, optimized performance, and long-term reliability.</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-bullet">✓</div>
+                        <div>
+                            <h3>Ongoing support</h3>
+                            <p>From initial consultation to troubleshooting and maintenance, we stay with you to help your systems run smoothly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="feature-visual">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80" alt="Professional IT support consultation" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-head">
+                <p>Contact us</p>
+                <h2>Let’s build the right setup for your business</h2>
+            </div>
+
+            <div class="contact-wrap">
+                <div class="contact-meta">
+                    <h3>Let’s get to work.</h3>
+                    <p>Reach out today to discuss how we can improve, scale, or fix your business technology infrastructure with cost-effective solutions.</p>
+
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <div class="contact-icon">📍</div>
+                            <div>
+                                <strong>Address</strong>
+                                <span>906/C26/A1 Rajnagar Ranchi, Suite 100</span>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">📞</div>
+                            <div>
+                                <strong>Phone</strong>
+                                <span><a href="tel:+919973066876">+91 9973066876</a></span>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon">✉️</div>
+                            <div>
+                                <strong>Email</strong>
+                                <span><a href="mailto:ppaul123456@gmail.com">ppaul123456@gmail.com</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-box">
+                    <form onsubmit="event.preventDefault(); alert('Thank you! Grow Services will contact you shortly.');">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input id="name" type="text" placeholder="Your Name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input id="email" type="email" placeholder="Your Email Address" required>
+                            </div>
+
+                            <div class="form-group full">
+                                <label for="service">Service Needed</label>
+                                <input id="service" type="text" placeholder="e.g. CCTV Setup, PC Repair, Office Networking">
+                            </div>
+
+                            <div class="form-group full">
+                                <label for="message">Message</label>
+                                <textarea id="message" rows="5" placeholder="Tell us about your requirements..."></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="cta-btn primary-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section aria-label="Find Grow Services">
+        <div class="container">
+            <div class="section-head">
+                <p>Find us</p>
+                <h2>Visit us in Ranchi</h2>
+                <p>Use the map to get directions to our listed Ranchi address.</p>
+            </div>
+            <div class="map-wrap">
+                <iframe
+                    title="Map to Grow Services in Ranchi"
+                    src="https://maps.google.com/maps?q=906%2FC26%2FA1%20Rajnagar%20Ranchi&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Grow Services. All rights reserved.
+    </footer>
+
+    <a class="floating-whatsapp" href="https://wa.me/919973066876?text=Hi%20Grow%20Services%2C%20I%20want%20to%20discuss%20my%20tech%20requirements." aria-label="Chat on WhatsApp">✆</a>
+    <script>
+        const menuButton = document.querySelector('.menu-toggle');
+        const navigation = document.querySelector('#site-navigation');
+
+        menuButton.addEventListener('click', () => {
+            const isOpen = navigation.classList.toggle('is-open');
+            menuButton.setAttribute('aria-expanded', String(isOpen));
+            menuButton.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+            menuButton.textContent = isOpen ? '×' : '☰';
+        });
+
+        navigation.querySelectorAll('a').forEach((link) => {
+            link.addEventListener('click', () => {
+                navigation.classList.remove('is-open');
+                menuButton.setAttribute('aria-expanded', 'false');
+                menuButton.setAttribute('aria-label', 'Open navigation menu');
+                menuButton.textContent = '☰';
+            });
+        });
+
+        const revealTargets = document.querySelectorAll(
+            '.section-head, .service-card, .stats-bar, .feature-item, .feature-visual, .contact-meta, .contact-form-box, .map-wrap'
+        );
+
+        if ('IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            revealTargets.forEach((element) => {
+                element.classList.add('reveal');
+                revealObserver.observe(element);
+            });
+        }
+    </script>
+</body>
+</html>
